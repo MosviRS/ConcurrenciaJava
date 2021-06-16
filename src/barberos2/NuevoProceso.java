@@ -26,7 +26,9 @@ public class NuevoProceso extends Thread{
                         } catch (InterruptedException ex) {
                             Logger.getLogger(Panel.class.getName()).log(Level.SEVERE, null, ex);
                         }
+                    
                     EnableBarberChair(i);
+                    checkChairClient();
                 }
             }
             for (int j = 0; j < Panel.clientes.length; j++) {
@@ -35,10 +37,11 @@ public class NuevoProceso extends Thread{
                     DisableChairClient(j);
                 }
             }
+            
         }
     }
     public void checkChairClient(){
-        System.out.println("entro");
+        System.out.println("entro"+Panel.clientes[0]);
         int indexBarber=(-1);
         for (int i = 0; i < Panel.barberos.length; i++) {
             if(!Panel.barberos[i]){
@@ -46,9 +49,10 @@ public class NuevoProceso extends Thread{
                 i=Panel.barberos.length;
             }
         }
-        if(Panel.clientes[0]=true){
-            if(Panel.clientes[1]=true){
-                if(Panel.clientes[2]=true){
+        if(Panel.clientes[0]==true){
+            System.out.println("cliente o espera hora passa");
+            if(Panel.clientes[1]==true){
+                if(Panel.clientes[2]==true){
                       Panel.clientes[2]=false;
                       DisableChairClient(2);
                 }else{
@@ -59,9 +63,12 @@ public class NuevoProceso extends Thread{
                 Panel.clientes[0]=false;
                 DisableChairClient(0);
             }
-              Panel.barberos[indexBarber]=true;
-             StartCutBarber(indexBarber);
-             System.out.println("Comenzo A atenderte el barbero "+indexBarber);
+             if(indexBarber!=(-1)){
+                System.out.println("Comenzo A atenderte el barbero "+indexBarber);
+                Panel.barberos[indexBarber]=true;
+                StartCutBarber(indexBarber);
+             }
+           
         }
          
     }
@@ -103,7 +110,7 @@ public class NuevoProceso extends Thread{
         
     }
     public void EnableChairClient(int index){
-        System.out.println("entro2");
+     
         switch(index){
             case 0:
                 Panel.Cli1.setVisible(true);
@@ -150,7 +157,7 @@ public class NuevoProceso extends Thread{
                 
             break;
         }
-        //checkChairClient();
+        
     }
     public void CreateNewProcess(){
         int bandera=0;
@@ -171,6 +178,7 @@ public class NuevoProceso extends Thread{
         }else{
             for (int i = 0; i < Panel.clientes.length; i++) {
                 if(!Panel.clientes[i]){
+                    System.out.println("clienet true");
                     Panel.clientes[i]=true;
                     bandera=1;
                     indexClient=i;

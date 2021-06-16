@@ -48,6 +48,7 @@ public class ClienteAtention extends Thread {
                 Logger.getLogger(Panel.class.getName()).log(Level.SEVERE, null, ex);
             }
             Panel.barberos[getIndexBarbertention()] = false;
+            
     }
     private int getRandomNumberInRange(int min, int max) {
         if (min >= max) {
