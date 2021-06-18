@@ -33,15 +33,20 @@ public class NuevoProceso extends Thread{
             }
             for (int j = 0; j < Panel.clientes.length; j++) {
                 if(!Panel.clientes[j]){
-
                     DisableChairClient(j);
+                    if(!modeloJlist.isEmpty()){
+                        modeloJlist.remove(0);
+                        EnableChairClient(j);
+                        Panel.clientes[j]=true;
+                        Panel.esperaClientesList.setModel(modeloJlist);
+                        
+                    }
                 }
             }
             
         }
     }
-    public void checkChairClient(){
-        System.out.println("entro"+Panel.clientes[0]);
+    public int checkChairBarber(){
         int indexBarber=(-1);
         for (int i = 0; i < Panel.barberos.length; i++) {
             if(!Panel.barberos[i]){
@@ -49,6 +54,12 @@ public class NuevoProceso extends Thread{
                 i=Panel.barberos.length;
             }
         }
+        return indexBarber;
+    }
+    
+    public void checkChairClient(){
+        System.out.println("entro"+Panel.clientes[0]);
+        int indexBarber=checkChairBarber();
         if(Panel.clientes[0]==true){
             System.out.println("cliente o espera hora passa");
             if(Panel.clientes[1]==true){
