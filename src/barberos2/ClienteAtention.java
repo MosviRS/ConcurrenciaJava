@@ -40,13 +40,9 @@ public class ClienteAtention extends Thread {
     
     @Override
     public void run() {
-        int aleatoryNumber = getRandomNumberInRange(10, 15);
-
-            try {
-                Thread.sleep(aleatoryNumber * 1000);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(Panel.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            
+            Sleep();
+            NuevoProceso.charginBarber(getIndexBarbertention());
             Panel.barberos[getIndexBarbertention()] = false;
             
     }
@@ -56,5 +52,13 @@ public class ClienteAtention extends Thread {
         }
         Random r = new Random();
         return r.nextInt((max - min) + 1) + min;
+    }
+    private void Sleep(){
+         int aleatoryNumber = getRandomNumberInRange(10, 15);
+        try {
+                Thread.sleep(aleatoryNumber * 1000);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Panel.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }
 }

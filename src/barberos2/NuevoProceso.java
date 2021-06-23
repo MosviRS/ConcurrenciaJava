@@ -21,14 +21,16 @@ public class NuevoProceso extends Thread{
         while(true){
             for (int i = 0; i < Panel.barberos.length; i++) {
                 if(!Panel.barberos[i]){
+                     
                      try {
                             Thread.sleep(2000);
                         } catch (InterruptedException ex) {
                             Logger.getLogger(Panel.class.getName()).log(Level.SEVERE, null, ex);
                         }
-                    
+                   
                     EnableBarberChair(i);
                     checkChairClient();
+                    
                 }
             }
             for (int j = 0; j < Panel.clientes.length; j++) {
@@ -56,7 +58,25 @@ public class NuevoProceso extends Thread{
         }
         return indexBarber;
     }
-    
+    public static void charginBarber(int index){
+        switch(index){
+            case 0:
+                Panel.Bar1.setText("Cobrando");
+                Panel.Bar1.setSelected(true);
+                
+            break;
+            case 1:
+                Panel.Bar2.setText("Cobrando");
+                Panel.Bar2.setSelected(true);
+            break;
+            case 2:
+                Panel.Bar3.setText("Cobrando");
+                Panel.Bar3.setSelected(true);
+            break;
+            
+        }
+         
+    }
     public void checkChairClient(){
         System.out.println("entro"+Panel.clientes[0]);
         int indexBarber=checkChairBarber();
